@@ -15,6 +15,7 @@ public class ReqresClient {
         ListUserAPI listUserAPI = new ListUserAPI();
         Response response = new RequestHandler().processHttpRequest(listUserAPI);
         ListUserResponse listUserResponse = response.as(ListUserResponse.class);
+        ApiLogger.log(listUserResponse.toString());
         listUserResponse.setHttpStatusCode(response.statusCode());
         return listUserResponse;
     }

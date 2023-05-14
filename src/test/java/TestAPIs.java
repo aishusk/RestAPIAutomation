@@ -12,7 +12,8 @@ public class TestAPIs extends TestBase {
     public TestAPIs(){
         reqresClient = new ReqresClient();
     }
-    @Test
+
+    @Test(priority = -3,groups = "TEST")
     public void testGetListOfUsers(){
         ListUserResponse listUserResponse = reqresClient.listUsers();
         ListUserResponse.Data dataofByron = listUserResponse.getData().stream().filter(i->i.getFirstName().equalsIgnoreCase("byron")).findAny().get();
@@ -23,7 +24,7 @@ public class TestAPIs extends TestBase {
         Assert.assertEquals(dataofByron.getEmail(),"byron.fields@reqres.in");
     }
 
-    @Test(dataProvider = "readCSV")
+    @Test(dataProvider = "readCSV", priority = -2,groups = "TEST")
     public void testCreateUsers(Object[] users){
         CreateUserRequest createUserRequest = UserHelper.createRequest(users);
         CreateUserResponse createUserResponse = reqresClient.createUser(createUserRequest);

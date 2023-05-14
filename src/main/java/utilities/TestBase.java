@@ -17,7 +17,7 @@ public class TestBase {
     public Object[] readCSV(){
         Object[] result = new Object[4];
         int counter = 0;
-        try(CSVReader csvReader = new CSVReader(new FileReader("TestData.csv"))){
+        try(CSVReader csvReader = new CSVReader(new FileReader("/Users/aishwaryasureshkumar/IdeaProjects/RestAPIAutomation/src/main/resources/TestData.csv"))){
             String[] data;
             while((data = csvReader.readNext())!=null){
               result[counter++] =

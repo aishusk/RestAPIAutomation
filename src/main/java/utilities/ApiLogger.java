@@ -13,7 +13,8 @@ public class ApiLogger {
         logger = LogManager.getLogger(className);
 //        Reporter.log(className+"---Api request for "+endpoint,true);
         Reporter.log("---------------Request body is --------------",true);
-        Reporter.log(requestBody.getBodyAsString(),true);
+        String print = null == requestBody ? "": requestBody.getBodyAsString();
+        Reporter.log(print,true);
     }
 
     public static void logResponse(String className, String endpoint, Response response ){
