@@ -3,9 +3,12 @@ import api.entity.CreateUser.CreateUserResponse;
 import api.entity.ListUsers.ListUserResponse;
 import clients.ReqresClient;
 import helpers.UserHelper;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.TestBase;
+
+import java.util.stream.Collectors;
 
 public class TestAPIs extends TestBase {
     private ReqresClient reqresClient;
@@ -13,7 +16,11 @@ public class TestAPIs extends TestBase {
         reqresClient = new ReqresClient();
     }
 
+
     @Test(priority = -3,groups = "TEST")
+    @Description("get list of users")
+    @Story("story name: validate users")
+    @Severity(SeverityLevel.NORMAL)
     public void testGetListOfUsers(){
         ListUserResponse listUserResponse = reqresClient.listUsers();
         ListUserResponse.Data dataofByron = listUserResponse.getData().stream().filter(i->i.getFirstName().equalsIgnoreCase("byron")).findAny().get();
@@ -25,6 +32,7 @@ public class TestAPIs extends TestBase {
     }
 
     @Test(dataProvider = "readCSV", priority = -2,groups = "TEST")
+    @Severity(SeverityLevel.CRITICAL)
     public void testCreateUsers(Object[] users){
         CreateUserRequest createUserRequest = UserHelper.createRequest(users);
         CreateUserResponse createUserResponse = reqresClient.createUser(createUserRequest);
