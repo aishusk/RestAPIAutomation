@@ -4,8 +4,10 @@ import com.opencsv.CSVReader;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -17,7 +19,9 @@ public class TestBase {
     public Object[] readCSV(){
         Object[] result = new Object[4];
         int counter = 0;
-        try(CSVReader csvReader = new CSVReader(new FileReader("/Users/aishwaryasureshkumar/IdeaProjects/RestAPIAutomation/src/main/resources/TestData.csv"))){
+        URL url = getClass().getResource("TestData.csv");
+        File file = new File(url.getPath());
+        try(CSVReader csvReader = new CSVReader(new FileReader(file))){
             String[] data;
             while((data = csvReader.readNext())!=null){
               result[counter++] =
