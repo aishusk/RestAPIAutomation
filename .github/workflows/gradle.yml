@@ -35,4 +35,4 @@ jobs:
     - name: Run Tests
       run: ./gradlew clean build runTests -Dtag=TEST
     - name: Generate allure reports  
-      run: allure serve build/allure-results
+      run: ./allure serve build/allure-results
